@@ -1,11 +1,12 @@
 const express = require('express')
 const bookRouter = new express.Router()
-const bookContoller = require('../controllers/bookList.controller')
+const { tryCatch } = require('../utils/tryCath.utility')
+const { ...book } = require('../controllers/bookList.controller')
 
-bookRouter.post('/create', bookContoller.create)
-bookRouter.get('/all', bookContoller.getAll)
-bookRouter.get('/:id', bookContoller.getOne)
-bookRouter.put('/update/:id', bookContoller.update)
-bookRouter.delete('/delete/:id', bookContoller.delete)
+bookRouter.post('/create', tryCatch(book.create))
+bookRouter.get('/all', tryCatch(book.getAll))
+bookRouter.get('/:id', tryCatch(book.getOne))
+bookRouter.put('/update/:id', tryCatch(book.update))
+bookRouter.delete('/delete/:id', tryCatch(book.remove))
 
 module.exports = bookRouter

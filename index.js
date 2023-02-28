@@ -1,14 +1,15 @@
 const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const bookRouter = require('./routes/bookList.router')
+const errorHandler = require('./middlewares/errorHandler.middleware')
 const { siteUrl, mongoUrl, port } = require('./config/app.config')
 
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use('/api/books', bookRouter)
+app.use(errorHandler)
 
 async function start() {
   try {

@@ -3,8 +3,8 @@ const pagination = require('mongoose-paginate-v2')
 
 const schema = new Schema(
   {
-    title: { type: String },
-    author: { type: String },
+    title: { type: String, require: true },
+    author: { type: String, require: true },
   },
   { timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } }
 )
